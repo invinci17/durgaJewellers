@@ -1,6 +1,8 @@
 package durgaJewellers.durgaJewellers.service.Impl;
 
 import durgaJewellers.durgaJewellers.dao.UserDao;
+import durgaJewellers.durgaJewellers.dto.CustomLogin;
+import durgaJewellers.durgaJewellers.dto.Response;
 import durgaJewellers.durgaJewellers.model.User.User;
 import durgaJewellers.durgaJewellers.service.UserDetailsService;
 import lombok.NonNull;
@@ -19,12 +21,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @NonNull private final UserDao userDao;
 
-    public ResponseEntity<String> loadUserByUsername(User user) {
+    public Boolean loadUserByUsername(User user) {
         User userDetails= userDao.findByUsername(user.getUsername());
         if(user.getPassword().equals(userDetails.getPassword())){
-            return new ResponseEntity<>("success", HttpStatus.OK);
+            return true;
         }
-        return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
+        return false;
     }
 
     public Boolean validateUser(String username, String password){

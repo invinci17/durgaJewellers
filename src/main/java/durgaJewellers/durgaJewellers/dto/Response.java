@@ -15,6 +15,7 @@ public class Response {
     List<Customer> response;
     Customer customer;
     CustomError error;
+    CustomLogin login;
 
 
     public Response(){
@@ -29,4 +30,6 @@ public class Response {
     }
 
     public Response(CustomError customError){this.error = customError;}
+
+    public Response(CustomLogin login){this.login = login;}
 }
